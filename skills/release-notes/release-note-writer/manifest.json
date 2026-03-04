@@ -1,0 +1,17 @@
+{
+  "name": "Release Note Writer",
+  "slug": "release-note-writer",
+  "category": "release-notes",
+  "description": "Creates a release note for a feature, with both customer and internal-facing options",
+  "author": {
+    "github_username": "rwjenson",
+    "display_name": "rwjenson"
+  },
+  "version": "1.0.0",
+  "tags": [],
+  "created_at": "2026-03-04T20:11:19.722Z",
+  "updated_at": "2026-03-04T20:11:19.722Z",
+  "downloads": 0,
+  "stars": [],
+  "verified": false
+}
