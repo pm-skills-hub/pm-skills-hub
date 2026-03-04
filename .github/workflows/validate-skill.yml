@@ -1,0 +1,180 @@
+name: Validate Skill Submission
+
+on:
+  pull_request:
+    paths:
+      - 'skills/**'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Find changed skill folders
+        id: changed
+        run: |
+          CHANGED=$(git diff --name-only ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | grep '^skills/' | cut -d'/' -f1-3 | sort -u)
+          echo "folders<<EOF" >> $GITHUB_OUTPUT
+          echo "$CHANGED" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Validate skills
+        run: |
+          node -e "
+          const fs = require('fs');
+          const path = require('path');
+
+          const VALID_CATEGORIES = ['prd', 'release-notes', 'ideation', 'user-research', 'strategy', 'specs', 'retrospectives', 'okrs', 'roadmaps', 'prioritization', 'stakeholder-comms', 'go-to-market', 'metrics', 'customer-feedback', 'other'];
+          const REQUIRED_MANIFEST_FIELDS = ['name', 'slug', 'category', 'description', 'author', 'version', 'tags', 'created_at', 'updated_at'];
+
+          const changedFolders = process.env.CHANGED_FOLDERS.trim().split('\n').filter(Boolean);
+          let hasErrors = false;
+
+          // Load existing registry to check for duplicate slugs
+          let existingSlugs = [];
+          try {
+            const registry = JSON.parse(fs.readFileSync('registry.json', 'utf-8'));
+            existingSlugs = registry.skills.map(s => s.slug);
+          } catch {}
+
+          for (const folder of changedFolders) {
+            const parts = folder.split('/');
+            if (parts.length < 3) continue;
+
+            const category = parts[1];
+            const skillSlug = parts[2];
+            const skillDir = path.join(process.cwd(), folder);
+
+            if (!fs.existsSync(skillDir)) {
+              console.log('Folder ' + folder + ' was deleted, skipping validation');
+              continue;
+            }
+
+            console.log('\nValidating: ' + folder);
+
+            // Check SKILL.md exists and has minimum length
+            const skillMdPath = path.join(skillDir, 'SKILL.md');
+            if (!fs.existsSync(skillMdPath)) {
+              console.error('  ERROR: SKILL.md is missing');
+              hasErrors = true;
+            } else {
+              const content = fs.readFileSync(skillMdPath, 'utf-8');
+              if (content.length < 100) {
+                console.error('  ERROR: SKILL.md must be at least 100 characters (got ' + content.length + ')');
+                hasErrors = true;
+              } else {
+                console.log('  OK: SKILL.md (' + content.length + ' chars)');
+              }
+            }
+
+            // Check CONFIG.md exists and has minimum length
+            const configMdPath = path.join(skillDir, 'CONFIG.md');
+            if (!fs.existsSync(configMdPath)) {
+              console.error('  ERROR: CONFIG.md is missing');
+              hasErrors = true;
+            } else {
+              const content = fs.readFileSync(configMdPath, 'utf-8');
+              if (content.length < 50) {
+                console.error('  ERROR: CONFIG.md must be at least 50 characters (got ' + content.length + ')');
+                hasErrors = true;
+              } else {
+                console.log('  OK: CONFIG.md (' + content.length + ' chars)');
+              }
+            }
+
+            // Check manifest.json
+            const manifestPath = path.join(skillDir, 'manifest.json');
+            if (!fs.existsSync(manifestPath)) {
+              console.error('  ERROR: manifest.json is missing');
+              hasErrors = true;
+              continue;
+            }
+
+            let manifest;
+            try {
+              manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf-8'));
+              console.log('  OK: manifest.json is valid JSON');
+            } catch (err) {
+              console.error('  ERROR: manifest.json is not valid JSON: ' + err.message);
+              hasErrors = true;
+              continue;
+            }
+
+            // Check required fields
+            for (const field of REQUIRED_MANIFEST_FIELDS) {
+              if (!(field in manifest)) {
+                console.error('  ERROR: manifest.json missing required field: ' + field);
+                hasErrors = true;
+              }
+            }
+
+            // Check slug matches folder name
+            if (manifest.slug && manifest.slug !== skillSlug) {
+              console.error('  ERROR: slug \"' + manifest.slug + '\" does not match folder name \"' + skillSlug + '\"');
+              hasErrors = true;
+            } else {
+              console.log('  OK: slug matches folder name');
+            }
+
+            // Check category is valid
+            if (manifest.category && !VALID_CATEGORIES.includes(manifest.category)) {
+              console.error('  ERROR: invalid category \"' + manifest.category + '\". Must be one of: ' + VALID_CATEGORIES.join(', '));
+              hasErrors = true;
+            } else if (manifest.category && manifest.category !== category) {
+              console.error('  ERROR: category \"' + manifest.category + '\" does not match parent folder \"' + category + '\"');
+              hasErrors = true;
+            } else {
+              console.log('  OK: category is valid');
+            }
+
+            // Check tags
+            if (Array.isArray(manifest.tags)) {
+              if (manifest.tags.length < 1 || manifest.tags.length > 5) {
+                console.error('  ERROR: tags must have 1 to 5 entries (got ' + manifest.tags.length + ')');
+                hasErrors = true;
+              }
+              for (const tag of manifest.tags) {
+                if (typeof tag !== 'string' || tag.length > 30) {
+                  console.error('  ERROR: each tag must be a string under 30 characters');
+                  hasErrors = true;
+                  break;
+                }
+              }
+              console.log('  OK: tags are valid (' + manifest.tags.length + ' tags)');
+            }
+
+            // Check for duplicate slug in existing registry
+            if (manifest.slug && existingSlugs.includes(manifest.slug)) {
+              console.warn('  WARN: slug \"' + manifest.slug + '\" already exists in registry (update, not new)');
+            }
+
+            // Check author fields
+            if (manifest.author) {
+              if (!manifest.author.github_username) {
+                console.error('  ERROR: author.github_username is required');
+                hasErrors = true;
+              }
+              if (!manifest.author.display_name) {
+                console.error('  ERROR: author.display_name is required');
+                hasErrors = true;
+              }
+            }
+          }
+
+          if (hasErrors) {
+            console.error('\nValidation FAILED. Please fix the errors above.');
+            process.exit(1);
+          } else {
+            console.log('\nAll validations passed!');
+          }
+          "
+        env:
+          CHANGED_FOLDERS: ${{ steps.changed.outputs.folders }}

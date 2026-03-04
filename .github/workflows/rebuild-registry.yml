@@ -1,0 +1,88 @@
+name: Rebuild Registry
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'skills/**'
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Rebuild registry.json
+        run: |
+          node -e "
+          const fs = require('fs');
+          const path = require('path');
+
+          const CATEGORIES = ['prd', 'release-notes', 'ideation', 'user-research', 'strategy', 'specs', 'retrospectives', 'okrs', 'roadmaps', 'prioritization', 'stakeholder-comms', 'go-to-market', 'metrics', 'customer-feedback', 'other'];
+          const skillsDir = path.join(process.cwd(), 'skills');
+          const skills = [];
+
+          for (const category of CATEGORIES) {
+            const categoryDir = path.join(skillsDir, category);
+            if (!fs.existsSync(categoryDir)) continue;
+
+            const folders = fs.readdirSync(categoryDir, { withFileTypes: true })
+              .filter(d => d.isDirectory())
+              .map(d => d.name);
+
+            for (const folder of folders) {
+              const skillDir = path.join(categoryDir, folder);
+              const manifestPath = path.join(skillDir, 'manifest.json');
+              const skillMdPath = path.join(skillDir, 'SKILL.md');
+              const configMdPath = path.join(skillDir, 'CONFIG.md');
+
+              if (!fs.existsSync(manifestPath) || !fs.existsSync(skillMdPath)) {
+                console.warn('Skipping ' + folder + ': missing manifest.json or SKILL.md');
+                continue;
+              }
+
+              try {
+                const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf-8'));
+                const skillMd = fs.readFileSync(skillMdPath, 'utf-8');
+                const configMd = fs.existsSync(configMdPath) ? fs.readFileSync(configMdPath, 'utf-8') : '';
+
+                skills.push({
+                  ...manifest,
+                  star_count: Array.isArray(manifest.stars) ? manifest.stars.length : 0,
+                  skill_md: skillMd,
+                  config_md: configMd
+                });
+              } catch (err) {
+                console.error('Error processing ' + folder + ':', err.message);
+              }
+            }
+          }
+
+          skills.sort((a, b) => (b.downloads || 0) - (a.downloads || 0));
+
+          const registry = {
+            generated_at: new Date().toISOString(),
+            skill_count: skills.length,
+            skills
+          };
+
+          fs.writeFileSync('registry.json', JSON.stringify(registry, null, 2));
+          console.log('Registry rebuilt with ' + skills.length + ' skills');
+          "
+
+      - name: Commit and push registry.json
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add registry.json
+          git diff --cached --quiet || git commit -m "chore: rebuild registry.json [skip ci]"
+          git push
