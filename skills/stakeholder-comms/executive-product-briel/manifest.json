@@ -1,0 +1,21 @@
+{
+  "name": "Executive Product Briel",
+  "slug": "executive-product-briel",
+  "category": "stakeholder-comms",
+  "description": "Generates and executive facing product brief with optionality around audience-level, timeframe, features to cover, etc",
+  "author": {
+    "github_username": "brayden-s-haws",
+    "display_name": "bhaws"
+  },
+  "version": "1.0.0",
+  "tags": [
+    "executive presentation",
+    "feature prioritization",
+    "product visualization"
+  ],
+  "created_at": "2026-03-04T15:02:59.740Z",
+  "updated_at": "2026-03-04T15:02:59.740Z",
+  "downloads": 0,
+  "stars": [],
+  "verified": false
+}
