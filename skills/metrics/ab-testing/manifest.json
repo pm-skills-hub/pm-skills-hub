@@ -1,0 +1,21 @@
+{
+  "name": "AB testing",
+  "slug": "ab-testing",
+  "category": "metrics",
+  "description": "Runs a set of AB Tests",
+  "author": {
+    "github_username": "brayden-s-haws",
+    "display_name": "bhaws"
+  },
+  "version": "1.0.0",
+  "tags": [
+    "ab experimentation",
+    "experimental design",
+    "quantitative analysis"
+  ],
+  "created_at": "2026-03-04T16:15:27.935Z",
+  "updated_at": "2026-03-04T16:15:27.935Z",
+  "downloads": 0,
+  "stars": [],
+  "verified": false
+}
