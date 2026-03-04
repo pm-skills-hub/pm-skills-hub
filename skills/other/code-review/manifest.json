@@ -1,0 +1,21 @@
+{
+  "name": "Code Review",
+  "slug": "code-review",
+  "category": "other",
+  "description": "Provides a code review based on your specific codebase, great for PMs prototyping or actively working on development",
+  "author": {
+    "github_username": "brayden-s-haws",
+    "display_name": "bhaws"
+  },
+  "version": "1.0.0",
+  "tags": [
+    "code quality",
+    "development process",
+    "pm-led review"
+  ],
+  "created_at": "2026-03-04T16:13:35.034Z",
+  "updated_at": "2026-03-04T16:13:35.034Z",
+  "downloads": 0,
+  "stars": [],
+  "verified": false
+}
