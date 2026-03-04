@@ -1,0 +1,22 @@
+{
+  "name": "JTBD Interview Guide",
+  "slug": "jtbd-interview-guide",
+  "category": "user-research",
+  "description": "Creates a customer interview guide for PMs using the Jobs to be Done framework",
+  "author": {
+    "github_username": "brayden-s-haws",
+    "display_name": "bhaws"
+  },
+  "version": "1.0.0",
+  "tags": [
+    "jtbd interview",
+    "customer interviews",
+    "customer insights",
+    "product discovery"
+  ],
+  "created_at": "2026-03-04T15:23:42.682Z",
+  "updated_at": "2026-03-04T15:23:42.682Z",
+  "downloads": 0,
+  "stars": [],
+  "verified": false
+}
