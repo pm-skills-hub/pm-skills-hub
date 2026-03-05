@@ -1,0 +1,21 @@
+{
+  "name": "Competitor Analysis",
+  "slug": "competitor-analysis",
+  "category": "strategy",
+  "description": "Creates a comprehensive competitor analysis",
+  "author": {
+    "github_username": "brayden-s-haws",
+    "display_name": "bhaws"
+  },
+  "version": "1.0.0",
+  "tags": [
+    "market research",
+    "competitive intelligence",
+    "industry benchmarking"
+  ],
+  "created_at": "2026-03-05T02:29:14.264Z",
+  "updated_at": "2026-03-05T02:29:14.264Z",
+  "downloads": 0,
+  "stars": [],
+  "verified": false
+}
