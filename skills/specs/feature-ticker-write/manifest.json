@@ -1,0 +1,21 @@
+{
+  "name": "Feature Ticker Write",
+  "slug": "feature-ticker-write",
+  "category": "specs",
+  "description": "This skill creates a detailed ticket for a specific feature",
+  "author": {
+    "github_username": "brayden-s-haws",
+    "display_name": "bhaws"
+  },
+  "version": "1.0.0",
+  "tags": [
+    "feature documentation",
+    "requirements writing",
+    "scoping software"
+  ],
+  "created_at": "2026-03-05T22:15:08.686Z",
+  "updated_at": "2026-03-05T22:15:08.686Z",
+  "downloads": 0,
+  "stars": [],
+  "verified": false
+}
