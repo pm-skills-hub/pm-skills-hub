@@ -1,0 +1,21 @@
+{
+  "name": "Product Strategy Doc",
+  "slug": "product-strategy-doc",
+  "category": "strategy",
+  "description": "Generate a complete, structured product strategy document that articulates vision, market context, strategic bets, and how the team will win. Use this skill whenever the user asks to write a product strategy, strategy doc, strategic plan, product vision doc, or product direction document. Also trigger when someone says \"help me articulate our strategy,\" \"I need to write up our product direction,\" \"help me explain where we're taking the product,\" \"write our product vision,\" or \"I need to present our bets to leadership.\" Produces a full strategy doc with market framing, vision, strategic bets, investment logic, and what we're not doing — written at the altitude of a senior PM or GPM presenting to an executive audience.",
+  "author": {
+    "github_username": "CHawsCoding",
+    "display_name": "Collin Haws"
+  },
+  "version": "1.0.0",
+  "tags": [
+    "market strategy",
+    "product vision",
+    "strategic planning"
+  ],
+  "created_at": "2026-03-05T02:12:54.551Z",
+  "updated_at": "2026-03-05T02:12:54.551Z",
+  "downloads": 0,
+  "stars": [],
+  "verified": false
+}
