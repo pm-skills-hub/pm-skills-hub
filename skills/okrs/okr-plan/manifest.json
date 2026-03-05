@@ -1,0 +1,21 @@
+{
+  "name": "OKR Plan",
+  "slug": "okr-plan",
+  "category": "okrs",
+  "description": "Creates an OKR plan",
+  "author": {
+    "github_username": "brayden-s-haws",
+    "display_name": "bhaws"
+  },
+  "version": "1.0.0",
+  "tags": [
+    "objective setting",
+    "key results",
+    "performance management"
+  ],
+  "created_at": "2026-03-05T20:59:39.553Z",
+  "updated_at": "2026-03-05T20:59:39.553Z",
+  "downloads": 0,
+  "stars": [],
+  "verified": false
+}
