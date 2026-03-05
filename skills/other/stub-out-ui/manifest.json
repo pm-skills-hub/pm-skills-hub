@@ -1,0 +1,21 @@
+{
+  "name": "Stub Out UI",
+  "slug": "stub-out-ui",
+  "category": "other",
+  "description": "This is a skill for PM's who prototype or code. It is used to stub out the major pieces of a UI for a feature.",
+  "author": {
+    "github_username": "brayden-s-haws",
+    "display_name": "bhaws"
+  },
+  "version": "1.0.0",
+  "tags": [
+    "ui prototyping",
+    "placeholder design",
+    "rapid iteration"
+  ],
+  "created_at": "2026-03-05T00:28:46.081Z",
+  "updated_at": "2026-03-05T00:28:46.081Z",
+  "downloads": 0,
+  "stars": [],
+  "verified": false
+}
