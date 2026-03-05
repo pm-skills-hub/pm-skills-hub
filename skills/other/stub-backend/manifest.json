@@ -1,0 +1,21 @@
+{
+  "name": "Stub Backend",
+  "slug": "stub-backend",
+  "category": "other",
+  "description": "This is a skill for PM's who prototype or code. It is used to stub out the major pieces of the backend for a feature.",
+  "author": {
+    "github_username": "brayden-s-haws",
+    "display_name": "bhaws"
+  },
+  "version": "1.0.0",
+  "tags": [
+    "stubbed backend",
+    "rapid prototyping",
+    "frontend validation"
+  ],
+  "created_at": "2026-03-05T02:36:31.487Z",
+  "updated_at": "2026-03-05T02:36:31.487Z",
+  "downloads": 0,
+  "stars": [],
+  "verified": false
+}
