@@ -1,0 +1,21 @@
+{
+  "name": "Architect. Review",
+  "slug": "architect-review",
+  "category": "other",
+  "description": "This is a skill for PM's who prototype or code. It is preforms an architecture review of your local code against the projects patterns and practices.",
+  "author": {
+    "github_username": "brayden-s-haws",
+    "display_name": "bhaws"
+  },
+  "version": "1.0.0",
+  "tags": [
+    "code review",
+    "architecture review",
+    "technical quality"
+  ],
+  "created_at": "2026-03-05T02:34:55.538Z",
+  "updated_at": "2026-03-05T02:34:55.538Z",
+  "downloads": 0,
+  "stars": [],
+  "verified": false
+}
