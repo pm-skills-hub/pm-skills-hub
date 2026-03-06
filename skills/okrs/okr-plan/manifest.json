@@ -1,8 +1,8 @@
 {
-  "name": "OKR Plan",
+  "name": "OKR Planner",
   "slug": "okr-plan",
   "category": "okrs",
-  "description": "Creates an OKR plan",
+  "description": "Creates a comprehensive set of OKRs tailored to your team and product",
   "author": {
     "github_username": "brayden-s-haws",
     "display_name": "bhaws"
