@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-05T23:22:36.648Z",
+  "generated_at": "2026-03-06T14:01:01.413Z",
   "skill_count": 17,
   "skills": [
     {
@@ -215,10 +215,10 @@
       "config_md": "# Customizing This Skill\n\n## Quick Start\n\nThis skill works out of the box and produces a complete post-launch retrospective framework that applies to any product team. No customization is required to start using it.\n\nHowever, you can personalize it to match your team's terminology, tools, and retro cadence to make the output feel native to your organization.\n\n## What to Customize\n\n### 1. Retro Timing Labels\n\n**What to look for:** The retro timing table in Step 2 uses T+1, T+7, T+30, and T+90 labels.\n\n**Why customize:** Your team may use different terminology (\"Day 1 Check-in\" vs. \"T+1\", \"Monthly Review\" vs. \"T+30\") or operate on different cadences entirely.\n\n**Example:**\n- Generic: \"T+30 (Primary retro)\"\n- Customized: \"4-Week Review (Primary retro)\" or \"Sprint +2 Retro\"\n\n### 2. Participant Roles\n\n**What to look for:** References to \"CS\", \"Support\", \"Marketing\", \"CSM\" in the timing table and facilitation guide.\n\n**Why customize:** Your organization may use different role names or have a different structure (e.g., \"Customer Success\" vs. \"Account Management\", \"DevRel\" instead of \"Marketing\").\n\n**Example:**\n- Generic: \"PM + CS + Eng\"\n- Customized: \"PM + Account Team + Engineering Lead\"\n\n### 3. Document Storage Format\n\n**What to look for:** The output format section mentions \"Notion, Confluence, or Google Docs.\"\n\n**Why customize:** Add your team's actual documentation platform to the default suggestion.\n\n**Example:**\n- Generic: \"structured for Notion, Confluence, or Google Docs\"\n- Customized: \"structured for our team wiki (Confluence)\"\n\n### 4. Metric Terminology\n\n**What to look for:** The metric outcomes table uses \"Primary metric\", \"Secondary metric\", \"Guardrail metric\".\n\n**Why customize:** If your team uses different metric hierarchy language (e.g., \"North Star\", \"KPI\", \"Health Metric\"), update the labels.\n\n**Example:**\n- Generic: \"Primary metric | Secondary metric | Guardrail metric\"\n- Customized: \"North Star Metric | Supporting KPIs | Health Metrics\"\n\n## Tips\n\n**Keep a template library:** Save your customized version as a team template in your documentation tool so everyone uses the same structure.\n\n**Update role names in one pass:** Do a find-replace for generic role names (CS → Customer Success, PM → Product Manager) to match your org chart.\n\n**Version your cadence:** If your team's launch cadence changes (e.g., you move from monthly to quarterly releases), update the timing table once and it'll flow through all future retros."
     },
     {
-      "name": "OKR Plan",
+      "name": "OKR Planner",
       "slug": "okr-plan",
       "category": "okrs",
-      "description": "Creates an OKR plan",
+      "description": "Creates a comprehensive set of OKRs tailored to your team and product",
       "author": {
         "github_username": "brayden-s-haws",
         "display_name": "bhaws"
