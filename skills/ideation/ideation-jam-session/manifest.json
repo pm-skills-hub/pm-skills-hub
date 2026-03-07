@@ -1,0 +1,21 @@
+{
+  "name": "Ideation Jam Session",
+  "slug": "ideation-jam-session",
+  "category": "ideation",
+  "description": "Facilitates an ideation session between the user and agent to dream big and think of out of the box product ideas",
+  "author": {
+    "github_username": "brayden-s-haws",
+    "display_name": "bhaws"
+  },
+  "version": "1.0.0",
+  "tags": [
+    "brainstorming",
+    "design thinking",
+    "creativity"
+  ],
+  "created_at": "2026-03-07T03:09:05.333Z",
+  "updated_at": "2026-03-07T03:09:05.333Z",
+  "downloads": 0,
+  "stars": [],
+  "verified": false
+}
