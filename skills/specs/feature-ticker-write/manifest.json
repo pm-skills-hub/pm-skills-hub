@@ -1,6 +1,6 @@
 {
-  "name": "Feature Ticket Write",
-  "slug": "feature-ticker-write",
+  "name": "Feature Ticket Writer",
+  "slug": "feature-ticker-writer",
   "category": "specs",
   "description": "This skill creates a detailed ticket for a specific feature",
   "author": {
